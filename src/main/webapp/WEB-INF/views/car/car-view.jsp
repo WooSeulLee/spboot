@@ -22,7 +22,7 @@
 	</tr>
 	<tr>
 		<th colspan="2">
-			<button>수정</button>
+			<button onclick="location.href='/views/car/car-update?ciNum=${param.ciNum}'">수정</button>
 			<button onclick="deleteCar()">삭제</button>
 		</th>
 	</tr>

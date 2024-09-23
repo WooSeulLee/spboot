@@ -21,6 +21,14 @@ public class CarInfoService {
 		return ciMapper.selectCar(ciNum);
 	}
 	
+	public int insertCar(CarInfoVO carInfo) {
+		return ciMapper.insertCar(carInfo);
+	}
+	
+	public int updateCar(CarInfoVO carInfo) {
+		return ciMapper.updateCar(carInfo);
+	}
+	
 	public int deleteCar(int ciNum) {
 		return ciMapper.deleteCar(ciNum);
 	}

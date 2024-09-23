@@ -27,7 +27,7 @@ function getUsers(){
 				for(const user of users){
 					html += '<tr>';
 					html += '<td>' + user.uiNum + '</td>';
-					html += '<td>' + user.uiName + '</td>';
+					html += '<td><a href="/views/user/user-view?uiNum=' + user.uiNum + '">' + user.uiName + '</a></td>';
 					html += '<td>' + user.uiId + '</td>';
 					html += '</tr>';
 				}

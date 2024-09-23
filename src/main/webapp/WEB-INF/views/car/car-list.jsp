@@ -19,6 +19,7 @@
 	</tr>
 	<tbody id="tBody"></tbody>
 </table>
+<a href="/views/car/car-insert">차량등록</a>
 <script>
 
 function getCars(){
@@ -55,6 +56,7 @@ function getCars(){
 	}
 	xhr.send();
 }
+window.onload = getCars;
 </script>
 </body>
 </html>

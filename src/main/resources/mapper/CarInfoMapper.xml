@@ -21,6 +21,19 @@
 	<select id="selectCar" resultType="com.test.spboot.vo.CarInfoVO">
 		SELECT CI_NUM, CI_NAME, CI_YEAR FROM CAR_INFO where CI_NUM=#{ciNum}
 	</select>
+	
+	<insert id="insertCar">
+		INSERT INTO CAR_INFO(CI_NAME, CI_YEAR)
+		VALUE(#{ciName},#{ciYear})
+	</insert>
+	
+	<update id="updateCar">
+		UPDATE CAR_INFO
+		SET CI_NAME=#{ciName},
+		CI_YEAR = #{ciYear}
+		WHERE CI_NUM = #{ciNum}
+	</update>
+	
 	<delete id="deleteCar"> 
 		DELETE FROM CAR_INFO WHERE CI_NUM=#{ciNum}
 	</delete>
