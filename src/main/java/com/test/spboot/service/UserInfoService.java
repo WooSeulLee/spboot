@@ -20,8 +20,14 @@ public class UserInfoService {
 	public UserInfoVO selectUser(int uiNum) {
 		return uiMapper.selectUser(uiNum);
 	}
-	
+
 	public int deleteUser(int uiNum) {
 		return uiMapper.deleteUser(uiNum);
+	}
+	public int insertUser(UserInfoVO userInfo) {
+		return uiMapper.insertUser(userInfo);
+	}
+	public int updateUser(UserInfoVO userInfo) {
+		return uiMapper.updateUser(userInfo);
 	}
 }

@@ -30,4 +30,23 @@
 	<delete id="deleteUser"> 
 		DELETE FROM USER_INFO WHERE UI_NUM=#{uiNum}
 	</delete>
+	<insert id="insertUser"> 
+		INSERT INTO USER_INFO(
+		UI_NAME, UI_ID, UI_PWD, UI_HOBBY,
+		UI_GENDER, UI_DESC, UI_BIRTH)
+		VALUE(
+		#{uiName}, #{uiId}, #{uiPwd}, #{uiHobby},
+		#{uiGender}, #{uiDesc}, #{uiBirth}
+		)
+	</insert>
+	<update id="updateUser">
+		UPDATE USER_INFO
+		SET UI_NAME=#{uiName},
+		UI_PWD=#{uiPwd},
+		UI_HOBBY=#{uiHobby},
+		UI_GENDER=#{uiGender},
+		UI_DESC=#{uiDesc},
+		UI_BIRTH=#{uiBirth}
+		WHERE UI_NUM=#{uiNum}
+	</update>
 </mapper>

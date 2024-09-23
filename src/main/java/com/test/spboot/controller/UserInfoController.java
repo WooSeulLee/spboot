@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.spboot.service.UserInfoService;
@@ -33,4 +36,14 @@ public class UserInfoController {
 	public int removeUser(@PathVariable("uiNum")int uiNum) {
 		return uiService.deleteUser(uiNum);
 	}
+	@PostMapping("/users")
+	public int addUser(@RequestBody UserInfoVO userInfo) {
+		return uiService.insertUser(userInfo);
+	}
+
+	@PutMapping("/users")
+	public int modifyUser(@RequestBody UserInfoVO userInfo) {
+		return uiService.updateUser(userInfo);
+	}
+	
 }

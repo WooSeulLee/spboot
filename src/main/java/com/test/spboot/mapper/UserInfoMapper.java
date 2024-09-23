@@ -8,4 +8,6 @@ public interface UserInfoMapper {
 	public List<UserInfoVO> selectUsers(UserInfoVO userInfo);
 	public UserInfoVO selectUser(int uiNum);
 	public int deleteUser(int uiNum);
+	public int insertUser(UserInfoVO userInfo);
+	public int updateUser(UserInfoVO userInfo);
 }

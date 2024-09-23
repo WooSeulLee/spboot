@@ -52,7 +52,7 @@ public class CarInfoController {
 	}
 	
 	@DeleteMapping("/cars/{ciNum}")
-	public int removeCar(@PathVariable("ciNum")int ciNum) {
+	public int removeCar(@PathVariable int ciNum) {
 		return ciService.deleteCar(ciNum);
 	}
 }

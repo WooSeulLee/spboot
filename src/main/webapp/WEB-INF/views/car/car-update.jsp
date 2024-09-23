@@ -42,17 +42,18 @@
 	}
 	function updateCar(){
 		var param = {
+				ciNum : document.querySelector('#ciNum').value,
 				ciName : document.querySelector('#ciName').value,
 				ciYear : document.querySelector('#ciYear').value
 		}
 		param = JSON.stringify(param);
 		const xhr = new XMLHttpRequest();
-		xhr.open('POST','/cars');
+		xhr.open('PUT','/cars');
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState === 4){
 				if(xhr.status === 200){
 					if(xhr.responseText == 1){
-						alert('차량등록이 성공하였습니다.');
+						alert('차량수정이 성공하였습니다.');
 						location.href='/views/car/car-list';
 					}
 				}
