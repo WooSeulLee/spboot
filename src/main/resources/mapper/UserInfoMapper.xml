@@ -20,6 +20,7 @@
 				AND UI_ID = #{uiId}
 			</if>
 		</where>
+		ORDER BY UI_NUM DESC
 	</select>
 	<select id="selectUser" resultType="com.test.spboot.vo.UserInfoVO">
 		SELECT UI_PWD, UI_NUM, UI_NAME, UI_ID, UI_HOBBY,

@@ -26,7 +26,7 @@
 	</tr>
 	<tr>
 		<th colspan="2">
-			<button>수정</button>
+			<button onclick="location.href='/views/user/user-update?uiNum=${param.uiNum}'">수정</button>
 			<button onclick="deleteUser()">삭제</button>
 		</th>
 	</tr>
