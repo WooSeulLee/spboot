@@ -37,7 +37,6 @@ function getUsers(){
 	}
 	xhr.send();
 }
-
 window.onload = getUsers;
 </script>
 </body>
