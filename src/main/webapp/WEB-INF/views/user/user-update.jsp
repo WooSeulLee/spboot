@@ -16,7 +16,7 @@
 
 드라이브<input type="checkbox" name="uiHobby" value="드라이브"> 영화<input type="checkbox" name="uiHobby" value="영화"><br>
 <textarea id="uiDesc"></textarea><br>
-<button onclick="updateUser()">유저등록</button>
+<button onclick="updateUser()">유저수정</button>
 <script>
 const uiNum = '${param.uiNum}';
 window.onload = function(){
@@ -35,7 +35,9 @@ window.onload = function(){
 							document.querySelector('[name="' + key + '"][value="' + value + '"]').checked = true;
 						}
 					}
-				}
+				} 
+				const uiBirth = user.uiBirth.substring(0,4) +'-' + user.uiBirth.substring(4,6) + '-' + user.uiBirth.substring(6);
+				document.querySelector("#uiBirth").value = uiBirth;
 			}
 		}
 	}
@@ -50,6 +52,7 @@ function updateUser(){
 	uiHobby = uiHobby.substring(0, uiHobby.length-1);
 	const uiBirth = document.querySelector('#uiBirth').value.replaceAll('-','');
 	var param = {
+			uiNum : document.querySelector('#uiNum').value,
 			uiId : document.querySelector('#uiId').value,
 			uiPwd : document.querySelector('#uiPwd').value,
 			uiName : document.querySelector('#uiName').value,
@@ -66,7 +69,7 @@ function updateUser(){
 		if(xhr.readyState===4){
 			if(xhr.status === 200){
 				if(xhr.responseText == 1){
-					alert('유저등록 성공!');
+					alert('유저수정 성공!');
 					location.href='/views/user/user-list'
 				}
 			}
