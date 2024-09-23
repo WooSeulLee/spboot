@@ -6,5 +6,22 @@
 <mapper namespace="com.test.spboot.mapper.CarInfoMapper">
 	<select id="selectCars" resultType="com.test.spboot.vo.CarInfoVO">
 		SELECT CI_NUM, CI_NAME, CI_YEAR FROM CAR_INFO
+		<where>
+			<if test='ciNum != null and ciNum != 0'>
+				AND CI_NUM=#{ciNum}
+			</if>
+			<if test='ciName != null and ciName !=""'>
+				AND CI_NAME LIKE CONCAT('%',#{ciName},'%')
+			</if>
+			<if test='ciYear != null and ciYear != ""'>
+				AND CI_YEAR = #{ciYear}
+			</if>
+		</where>
 	</select>
+	<select id="selectCar" resultType="com.test.spboot.vo.CarInfoVO">
+		SELECT CI_NUM, CI_NAME, CI_YEAR FROM CAR_INFO where CI_NUM=#{ciNum}
+	</select>
+	<delete id="deleteCar"> 
+		DELETE FROM CAR_INFO WHERE CI_NUM=#{ciNum}
+	</delete>
 </mapper>

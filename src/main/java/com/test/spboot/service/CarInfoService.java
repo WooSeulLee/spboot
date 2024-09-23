@@ -13,7 +13,15 @@ public class CarInfoService {
 	@Autowired
 	private CarInfoMapper ciMapper;
 	
-	public List<CarInfoVO> selectCars() {
-		return ciMapper.selectCars();
+	public List<CarInfoVO> selectCars(CarInfoVO carInfo) {
+		return ciMapper.selectCars(carInfo);
+	}
+	
+	public CarInfoVO selectCar(int ciNum) {
+		return ciMapper.selectCar(ciNum);
+	}
+	
+	public int deleteCar(int ciNum) {
+		return ciMapper.deleteCar(ciNum);
 	}
 }

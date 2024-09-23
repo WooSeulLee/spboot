@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<button onclick="getCars()">값 가져오기</button>
+<input type="text" id="ciNum"  placeholder="번호">
+<input type="text" id="ciName" placeholder="모델명">
+<input type="text" id="ciYear" placeholder="연식">
+<button onclick="getCars()">검색</button>
 <table border="1">
 	<tr>
 		<th>번호</th>
@@ -20,7 +23,12 @@
 
 function getCars(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/cars');
+	var url = '/cars?';
+	url += 'ciNum=' + document.querySelector('#ciNum').value;
+	url += '&ciName=' + document.querySelector('#ciName').value;
+	url += '&ciYear=' + document.querySelector('#ciYear').value;
+
+	xhr.open('GET',url);
 	
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState===4){
@@ -30,11 +38,18 @@ function getCars(){
 				for(const car of cars){
 					html += '<tr>';
 					html += '<td>' + car.ciNum + '</td>';
-					html += '<td>' + car.ciName + '</td>';
+					html += '<td data-num="' + car.ciNum + '">' + car.ciName + '</td>';
 					html += '<td>' + car.ciYear + '</td>';
 					html += '</tr>';
 				}
 				document.querySelector('#tBody').innerHTML = html;
+				const tds = document.querySelectorAll('td[data-num]');
+				for(const td of tds){
+					td.onclick = function(){
+						const ciNum = td.getAttribute('data-num');
+						location.href = '/views/car/car-view?ciNum=' + ciNum;
+					}
+				}
 			}
 		}
 	}

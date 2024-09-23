@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CarInfoVO {
-	private int ciNum;
+	private Integer ciNum;
 	private String ciName;
 	private String ciYear;
 }
