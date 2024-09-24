@@ -7,14 +7,27 @@ import org.springframework.stereotype.Service;
 
 import com.test.spboot.mapper.CarInfoMapper;
 import com.test.spboot.vo.CarInfoVO;
+import com.test.spboot.vo.ResultList;
 
 @Service
 public class CarInfoService {	
 	@Autowired
 	private CarInfoMapper ciMapper;
 	
-	public List<CarInfoVO> selectCars(CarInfoVO carInfo) {
-		return ciMapper.selectCars(carInfo);
+	public ResultList<CarInfoVO> selectCars(CarInfoVO carInfo) {
+		if(carInfo.getCount()==0) {
+			carInfo.setCount(10);
+		}
+		if(carInfo.getPage()!=0) {
+			int start = (carInfo.getPage()-1)*carInfo.getCount();
+			carInfo.setStart(start);
+		}
+		ResultList<CarInfoVO> rl = new ResultList<>();
+		List<CarInfoVO> cars = ciMapper.selectCars(carInfo);
+		rl.setList(cars);
+		int totalCnt = ciMapper.selectCarsTotal(carInfo);
+		rl.setCount(totalCnt);
+		return rl;
 	}
 	
 	public CarInfoVO selectCar(int ciNum) {

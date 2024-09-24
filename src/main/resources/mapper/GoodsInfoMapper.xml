@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- src/main/resources/mapper/CarInfoMapper.xml -->
+<mapper namespace="com.test.spboot.mapper.GoodsInfoMapper">
+	<select id="selectGoodsList"
+		resultType="com.test.spboot.vo.GoodsInfoVO">
+		SELECT GI_NUM, GI_NAME, GI_PRICE, GI_DESC, CREDAT FROM GOODS_INFO
+		<where>
+			<if test='giNum !=null and giNum !=0'>
+				AND GI_NUM= #{giNum}
+			</if>
+			<if test='giName != null and giName !="" '>
+				AND GI_NAME = #{giName}
+			</if>
+		</where>
+	</select>
+	<select id="selectGoods"
+		resultType="com.test.spboot.vo.GoodsInfoVO">
+		SELECT GI_NUM, GI_NAME, GI_PRICE, GI_DESC, CREDAT
+		FROM
+		GOODS_INFO
+		WHERE GI_NUM = #{giNum}
+	</select>
+	<insert id="insertGoods">
+		INSERT INTO GOODS_INFO(GI_NAME, GI_PRICE, GI_DESC)
+		VALUES (#{giName}, #{giPrice}, #{giDesc});
+	</insert>
+	<update id="updateGoods">
+		UPDATE GOODS_INFO
+		SET GI_NAME = #{giName},
+		GI_PRICE = #{giPrice},
+		GI_DESC = #{giDesc}
+		WHERE GI_NUM = #{giNum}
+	</update>
+	<delete id="deleteGoods">
+		DELETE FROM GOODS_INFO
+		WHERE GI_NUM = #{giNum}
+	</delete>
+</mapper>

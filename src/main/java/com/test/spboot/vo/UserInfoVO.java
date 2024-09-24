@@ -10,6 +10,9 @@ import lombok.ToString;
 public class UserInfoVO {
 
 	private int uiNum;
+	private int start;
+	private int count;
+	private int page;
 	private String uiName;
 	private String uiId;
 	private String uiPwd;

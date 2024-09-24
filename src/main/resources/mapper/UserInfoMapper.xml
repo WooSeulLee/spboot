@@ -4,11 +4,27 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- src/main/resources/mapper/UserInfoMapper.xml -->
 <mapper namespace="com.test.spboot.mapper.UserInfoMapper">
-	<select id="selectUsers" resultType="com.test.spboot.vo.UserInfoVO">
+	<select id="selectUsersTotal" resultType="int">
+		SELECT COUNT(*) FROM user_info
+		<where>
+			<if test='uiNum != null and uiNum != 0'>
+				AND UI_NUM=#{uiNum}
+			</if>
+			<if test='uiName != null and uiName !=""'>
+				AND UI_NAME LIKE CONCAT('%',#{uiName},'%')
+			</if>
+			<if test='uiId != null and uiId != ""'>
+				AND UI_ID = #{uiId}
+			</if>
+		</where>
+	</select>
+	<select id="selectUsers"
+		resultType="com.test.spboot.vo.UserInfoVO">
 		SELECT UI_PWD, UI_NUM, UI_NAME, UI_ID, UI_HOBBY,
-		UI_GENDER, UI_DESC, UI_BIRTH, CRETIM,
+		UI_GENDER, UI_DESC,
+		UI_BIRTH, CRETIM,
 		CREDAT
- 		FROM USER_INFO
+		FROM USER_INFO
 		<where>
 			<if test='uiNum != null and uiNum != 0'>
 				AND UI_NUM=#{uiNum}
@@ -21,23 +37,30 @@
 			</if>
 		</where>
 		ORDER BY UI_NUM DESC
+		LIMIT #{start}, #{count}
 	</select>
-	<select id="selectUser" resultType="com.test.spboot.vo.UserInfoVO">
+	<select id="selectUser"
+		resultType="com.test.spboot.vo.UserInfoVO">
 		SELECT UI_PWD, UI_NUM, UI_NAME, UI_ID, UI_HOBBY,
-		UI_GENDER, UI_DESC, UI_BIRTH, CRETIM,
+		UI_GENDER,
+		UI_DESC, UI_BIRTH, CRETIM,
 		CREDAT
 		FROM USER_INFO where UI_NUM=#{uiNum}
 	</select>
-	<delete id="deleteUser"> 
+	<delete id="deleteUser">
 		DELETE FROM USER_INFO WHERE UI_NUM=#{uiNum}
 	</delete>
-	<insert id="insertUser"> 
+	<insert id="insertUser">
 		INSERT INTO USER_INFO(
-		UI_NAME, UI_ID, UI_PWD, UI_HOBBY,
-		UI_GENDER, UI_DESC, UI_BIRTH)
+		UI_NAME, UI_ID, UI_PWD,
+		UI_HOBBY,
+		UI_GENDER, UI_DESC,
+		UI_BIRTH)
 		VALUE(
-		#{uiName}, #{uiId}, #{uiPwd}, #{uiHobby},
-		#{uiGender}, #{uiDesc}, #{uiBirth}
+		#{uiName}, #{uiId},
+		#{uiPwd}, #{uiHobby},
+		#{uiGender},
+		#{uiDesc}, #{uiBirth}
 		)
 	</insert>
 	<update id="updateUser">

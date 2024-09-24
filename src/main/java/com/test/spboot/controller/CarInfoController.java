@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.test.spboot.service.CarInfoService;
 import com.test.spboot.vo.CarInfoVO;
+import com.test.spboot.vo.ResultList;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,9 +31,9 @@ public class CarInfoController {
 	private CarInfoService ciService;
 	
 	@GetMapping("/cars")
-	public List<CarInfoVO> getCars(CarInfoVO carInfo){
-		log.info("carInfo=>{}", carInfo);
-		return ciService.selectCars(carInfo);
+	public ResultList<CarInfoVO> getCars(CarInfoVO carInfo){
+		ResultList<CarInfoVO> rl = ciService.selectCars(carInfo);
+		return rl;
 	}
 	@GetMapping("/cars/{ciNum}")
 	public CarInfoVO getCar(@PathVariable("ciNum")int ciNum) {
