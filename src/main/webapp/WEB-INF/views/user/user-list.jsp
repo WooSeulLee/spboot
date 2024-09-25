@@ -78,7 +78,7 @@ function getUsers(page){
 					lNum = total;
 				}
 				if(sNum != 1){
-					html+='<a href="javascript:getUsers(' + (sNum-1) + ')">◀</a>'
+					html+='<a href="javascript:getUsers(' + (sNum-1) + ')">◀</a>';
 				}
 				for(var i = sNum ; i <= lNum ; i++){
 					if(i===page){
